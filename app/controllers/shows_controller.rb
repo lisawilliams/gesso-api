@@ -1,10 +1,11 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :update, :destroy]
+  # before_action :set_show, only: [:show, :update, :destroy]
+
+  before_action :set_show, only: [:update, :destroy]
 
   # GET /shows
   def index
-    @shows = Show.all
-
+    @shows = current_user.chores
     render json: @shows
   end
 
@@ -15,7 +16,7 @@ class ShowsController < ApplicationController
 
   # POST /shows
   def create
-    @show = Show.new(show_params)
+    @show = current_user.shows.build(show_params)
 
     if @show.save
       render json: @show, status: :created, location: @show
@@ -41,7 +42,7 @@ class ShowsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_show
-      @show = Show.find(params[:id])
+      @show = current_user.chores.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
