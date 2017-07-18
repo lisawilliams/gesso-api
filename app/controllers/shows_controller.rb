@@ -1,11 +1,11 @@
-class ShowsController < ApplicationController
+# class ShowsController < ApplicationController
   # before_action :set_show, only: [:show, :update, :destroy]
-
+class ShowsController < OpenReadController
   before_action :set_show, only: [:update, :destroy]
 
   # GET /shows
   def index
-    @shows = current_user.chores
+    @shows = current_user.shows
     render json: @shows
   end
 
@@ -42,7 +42,7 @@ class ShowsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_show
-      @show = current_user.chores.find(params[:id])
+      @show = current_user.shows.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
