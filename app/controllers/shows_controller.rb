@@ -1,5 +1,3 @@
-# class ShowsController < ApplicationController
-  # before_action :set_show, only: [:show, :update, :destroy]
 class ShowsController < OpenReadController
   before_action :set_show, only: [:update, :destroy]
 
