@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719204606) do
+ActiveRecord::Schema.define(version: 20170718184729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "artists", force: :cascade do |t|
-    t.string   "artist_name"
-    t.string   "artist_website"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
 
   create_table "examples", force: :cascade do |t|
     t.text     "text",       null: false
@@ -38,8 +31,6 @@ ActiveRecord::Schema.define(version: 20170719204606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "artist_id"
-    t.index ["artist_id"], name: "index_shows_on_artist_id", using: :btree
     t.index ["user_id"], name: "index_shows_on_user_id", using: :btree
   end
 
@@ -54,6 +45,5 @@ ActiveRecord::Schema.define(version: 20170719204606) do
   end
 
   add_foreign_key "examples", "users"
-  add_foreign_key "shows", "artists"
   add_foreign_key "shows", "users"
 end
