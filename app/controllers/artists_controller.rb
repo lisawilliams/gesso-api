@@ -15,7 +15,7 @@ class ArtistsController < OpenReadController
 
   # POST /artists
   def create
-    @artist = Artist.new(artist_params)
+    @artist = current_user.artist.build(artist_params)
 
     if @artist.save
       render json: @artist, status: :created, location: @artist
