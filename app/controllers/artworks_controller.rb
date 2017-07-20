@@ -1,4 +1,4 @@
-class ArtworksController < ApplicationController
+class ArtworksController < OpenReadController
   before_action :set_artwork, only: [:show, :update, :destroy]
 
   # GET /artworks
@@ -15,7 +15,7 @@ class ArtworksController < ApplicationController
 
   # POST /artworks
   def create
-    @artwork = Artwork.new(artwork_params)
+    @artwork = current_user.shows.artwork.build(artwork_params)
 
     if @artwork.save
       render json: @artwork, status: :created, location: @artwork
