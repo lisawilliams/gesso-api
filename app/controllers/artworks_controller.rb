@@ -13,10 +13,13 @@ class ArtworksController < OpenReadController
     render json: @artwork
   end
 
+  # create @show variable to allow the POST artworks to reference a particular
+  # show via show_id
+
   # POST /artworks
   def create
+    @show_id = params[:artwork][:show_id]
     @artwork = current_user.shows.artwork.build(artwork_params)
-
     if @artwork.save
       render json: @artwork, status: :created, location: @artwork
     else
