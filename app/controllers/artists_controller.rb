@@ -1,10 +1,9 @@
 class ArtistsController < OpenReadController
-  before_action :set_artist, only: [:show, :update, :destroy]
+  before_action :set_artist, only: [:update, :destroy]
 
   # GET /artists
   def index
-    @artists = Artist.all
-
+    @artists = current_user.artists
     render json: @artists
   end
 
