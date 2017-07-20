@@ -1,4 +1,4 @@
-class ArtistsController < ApplicationController
+class ArtistsController < OpenReadController
   before_action :set_artist, only: [:show, :update, :destroy]
 
   # GET /artists
